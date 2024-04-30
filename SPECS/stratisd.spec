@@ -4,7 +4,7 @@
 %global dracutdir %(pkg-config --variable=dracutdir dracut)
 
 Name:           stratisd
-Version:        3.5.8
+Version:        3.6.2
 Release:        1%{?dist}
 Summary:        Daemon that manages block devices to create filesystems
 
@@ -14,7 +14,6 @@ Source0:        %{url}/archive/stratisd-v%{version}/%{name}-%{version}.tar.gz
 Source1:        %{url}/releases/download/stratisd-v%{version}/%{name}-%{version}-vendor.tar.gz
 Source2:        %{crates_source}
 
-Patch0:         vendor-serde_derive.patch
 
 ExclusiveArch:  %{rust_arches}
 %if 0%{?rhel}
@@ -53,6 +52,153 @@ Requires:       libblkid
 # that it uses to have been built in an environment with cryptsetup >= 2.6.0.
 Recommends:     clevis-luks >= 18
 
+Provides: bundled(crate(aho-corasick)) = 1.0.2
+Provides: bundled(crate(anstream)) = 0.3.2
+Provides: bundled(crate(anstyle)) = 1.0.1
+Provides: bundled(crate(anstyle-parse)) = 0.2.1
+Provides: bundled(crate(anstyle-query)) = 1.0.0
+Provides: bundled(crate(assert_cmd)) = 2.0.11
+Provides: bundled(crate(assert_matches)) = 1.5.0
+Provides: bundled(crate(async-trait)) = 0.1.68
+Provides: bundled(crate(autocfg)) = 1.1.0
+Provides: bundled(crate(bindgen)) = 0.59.2
+Provides: bundled(crate(bit-set)) = 0.5.3
+Provides: bundled(crate(bit-vec)) = 0.6.3
+Provides: bundled(crate(bitflags)) = 2.4.0
+Provides: bundled(crate(bitflags)) = 1.3.2
+Provides: bundled(crate(block-buffer)) = 0.10.4
+Provides: bundled(crate(bstr)) = 1.5.0
+Provides: bundled(crate(byteorder)) = 1.4.3
+Provides: bundled(crate(cc)) = 1.0.79
+Provides: bundled(crate(cexpr)) = 0.6.0
+Provides: bundled(crate(cfg-if)) = 1.0.0
+Provides: bundled(crate(cfg-if)) = 0.1.10
+Provides: bundled(crate(chrono)) = 0.4.26
+Provides: bundled(crate(clang-sys)) = 1.6.1
+Provides: bundled(crate(clap)) = 4.3.5
+Provides: bundled(crate(clap_builder)) = 4.3.5
+Provides: bundled(crate(clap_lex)) = 0.5.0
+Provides: bundled(crate(colorchoice)) = 1.0.0
+Provides: bundled(crate(cpufeatures)) = 0.2.8
+Provides: bundled(crate(crc)) = 3.0.1
+Provides: bundled(crate(crc-catalog)) = 2.2.0
+Provides: bundled(crate(crypto-common)) = 0.1.6
+Provides: bundled(crate(data-encoding)) = 2.4.0
+Provides: bundled(crate(dbus)) = 0.9.7
+Provides: bundled(crate(dbus-tree)) = 0.9.2
+Provides: bundled(crate(devicemapper)) = 0.34.0
+Provides: bundled(crate(devicemapper-sys)) = 0.2.0
+Provides: bundled(crate(difflib)) = 0.4.0
+Provides: bundled(crate(digest)) = 0.10.7
+Provides: bundled(crate(doc-comment)) = 0.3.3
+Provides: bundled(crate(either)) = 1.8.1
+Provides: bundled(crate(env_logger)) = 0.10.0
+Provides: bundled(crate(errno)) = 0.3.1
+Provides: bundled(crate(errno)) = 0.2.8
+Provides: bundled(crate(fastrand)) = 1.9.0
+Provides: bundled(crate(float-cmp)) = 0.9.0
+Provides: bundled(crate(futures)) = 0.3.28
+Provides: bundled(crate(futures-channel)) = 0.3.28
+Provides: bundled(crate(futures-core)) = 0.3.28
+Provides: bundled(crate(futures-executor)) = 0.3.28
+Provides: bundled(crate(futures-io)) = 0.3.28
+Provides: bundled(crate(futures-macro)) = 0.3.28
+Provides: bundled(crate(futures-sink)) = 0.3.28
+Provides: bundled(crate(futures-task)) = 0.3.28
+Provides: bundled(crate(futures-util)) = 0.3.28
+Provides: bundled(crate(generic-array)) = 0.14.7
+Provides: bundled(crate(getrandom)) = 0.2.10
+Provides: bundled(crate(glob)) = 0.3.1
+Provides: bundled(crate(humantime)) = 2.1.0
+Provides: bundled(crate(iana-time-zone)) = 0.1.57
+Provides: bundled(crate(io-lifetimes)) = 1.0.11
+Provides: bundled(crate(iocuddle)) = 0.1.1
+Provides: bundled(crate(is-terminal)) = 0.4.7
+Provides: bundled(crate(itertools)) = 0.11.0
+Provides: bundled(crate(itertools)) = 0.10.5
+Provides: bundled(crate(itoa)) = 1.0.6
+Provides: bundled(crate(lazy_static)) = 1.4.0
+Provides: bundled(crate(lazycell)) = 1.3.0
+Provides: bundled(crate(libblkid-rs)) = 0.3.1
+Provides: bundled(crate(libblkid-rs-sys)) = 0.2.0
+Provides: bundled(crate(libc)) = 0.2.149
+Provides: bundled(crate(libcryptsetup-rs)) = 0.9.1
+Provides: bundled(crate(libcryptsetup-rs-sys)) = 0.3.0
+Provides: bundled(crate(libdbus-sys)) = 0.2.5
+Provides: bundled(crate(libloading)) = 0.7.4
+Provides: bundled(crate(libm)) = 0.2.7
+Provides: bundled(crate(libmount)) = 0.1.15
+Provides: bundled(crate(libudev)) = 0.3.0
+Provides: bundled(crate(libudev-sys)) = 0.1.4
+Provides: bundled(crate(linux-raw-sys)) = 0.3.8
+Provides: bundled(crate(log)) = 0.4.19
+Provides: bundled(crate(loopdev)) = 0.4.0
+Provides: bundled(crate(memchr)) = 2.5.0
+Provides: bundled(crate(memoffset)) = 0.7.1
+Provides: bundled(crate(minimal-lexical)) = 0.2.1
+Provides: bundled(crate(mio)) = 0.8.8
+Provides: bundled(crate(nix)) = 0.26.2
+Provides: bundled(crate(nix)) = 0.14.1
+Provides: bundled(crate(nom)) = 7.1.3
+Provides: bundled(crate(normalize-line-endings)) = 0.3.0
+Provides: bundled(crate(num-traits)) = 0.2.15
+Provides: bundled(crate(num_cpus)) = 1.15.0
+Provides: bundled(crate(once_cell)) = 1.18.0
+Provides: bundled(crate(peeking_take_while)) = 0.1.2
+Provides: bundled(crate(pin-project-lite)) = 0.2.9
+Provides: bundled(crate(pin-utils)) = 0.1.0
+Provides: bundled(crate(pkg-config)) = 0.3.27
+Provides: bundled(crate(ppv-lite86)) = 0.2.17
+Provides: bundled(crate(predicates)) = 3.0.3
+Provides: bundled(crate(predicates-core)) = 1.0.6
+Provides: bundled(crate(predicates-tree)) = 1.0.9
+Provides: bundled(crate(pretty-hex)) = 0.3.0
+Provides: bundled(crate(proc-macro2)) = 1.0.66
+Provides: bundled(crate(proptest)) = 1.2.0
+Provides: bundled(crate(quick-error)) = 1.2.3
+Provides: bundled(crate(quote)) = 1.0.28
+Provides: bundled(crate(rand)) = 0.8.5
+Provides: bundled(crate(rand_chacha)) = 0.3.1
+Provides: bundled(crate(rand_core)) = 0.6.4
+Provides: bundled(crate(rand_xorshift)) = 0.3.0
+Provides: bundled(crate(regex)) = 1.8.4
+Provides: bundled(crate(regex-automata)) = 0.1.10
+Provides: bundled(crate(regex-syntax)) = 0.7.2
+Provides: bundled(crate(regex-syntax)) = 0.6.29
+Provides: bundled(crate(retry)) = 1.3.1
+Provides: bundled(crate(rustc-hash)) = 1.1.0
+Provides: bundled(crate(rustix)) = 0.37.25
+Provides: bundled(crate(rusty-fork)) = 0.3.0
+Provides: bundled(crate(ryu)) = 1.0.13
+Provides: bundled(crate(semver)) = 1.0.17
+Provides: bundled(crate(serde)) = 1.0.188
+Provides: bundled(crate(serde_derive)) = 1.0.188
+Provides: bundled(crate(serde_json)) = 1.0.97
+Provides: bundled(crate(sha2)) = 0.10.7
+Provides: bundled(crate(shlex)) = 1.1.0
+Provides: bundled(crate(signal-hook-registry)) = 1.4.1
+Provides: bundled(crate(slab)) = 0.4.8
+Provides: bundled(crate(socket2)) = 0.4.9
+Provides: bundled(crate(static_assertions)) = 1.1.0
+Provides: bundled(crate(stratisd_proc_macros)) = 0.2.1
+Provides: bundled(crate(strsim)) = 0.10.0
+Provides: bundled(crate(syn)) = 2.0.29
+Provides: bundled(crate(syn)) = 1.0.109
+Provides: bundled(crate(tempfile)) = 3.6.0
+Provides: bundled(crate(termcolor)) = 1.2.0
+Provides: bundled(crate(termios)) = 0.3.3
+Provides: bundled(crate(termtree)) = 0.4.1
+Provides: bundled(crate(tokio)) = 1.28.2
+Provides: bundled(crate(tokio-macros)) = 2.1.0
+Provides: bundled(crate(typenum)) = 1.16.0
+Provides: bundled(crate(unarray)) = 0.1.4
+Provides: bundled(crate(unicode-ident)) = 1.0.9
+Provides: bundled(crate(utf8parse)) = 0.2.1
+Provides: bundled(crate(uuid)) = 1.3.4
+Provides: bundled(crate(version_check)) = 0.9.4
+Provides: bundled(crate(void)) = 1.0.2
+Provides: bundled(crate(wait-timeout)) = 0.2.0
+
 %description
 %{summary}.
 
@@ -66,7 +212,7 @@ ExcludeArch:    i686
 
 Requires:     stratisd
 Requires:     dracut >= 051
-Requires:     plymouth
+Requires:     systemd
 
 %description dracut
 %{summary}.
@@ -96,27 +242,14 @@ Requires:     stratisd
 # previously extracted directory and its contents at the same time. Move the
 # newly created tar file to the SOURCE0 location.
 tar --transform="s/^stratisd\-stratisd-v/stratisd-/" --extract --file %{SOURCE0}
-tar --extract --overwrite --file %{SOURCE2}
+tar --directory=./stratisd-%{version} --strip-components=1 --extract --overwrite --file %{SOURCE2}
 tar --create --gzip --file %{SOURCE0}.newfile ./stratisd-%{version} --remove-files
 mv %{SOURCE0}.newfile %{SOURCE0}
 
 %setup -q
 
 %if 0%{?rhel}
-
-# Untar the vendor tarfile.
-tar --extract --file %{SOURCE1}
-
-# Remove pre-compiled procedural macro, compile from source
-rm ./vendor/serde_derive/serde_derive-x86_64-unknown-linux-gnu
-%patch0 -p1
-
-# Rezip the tarfile
-tar --create --gzip --file %{SOURCE1}.newfile ./vendor --remove-files
-mv %{SOURCE1}.newfile %{SOURCE1}
-
 %cargo_prep -V 1
-
 %else
 %cargo_prep
 %generate_buildrequires
@@ -131,7 +264,6 @@ mv %{SOURCE1}.newfile %{SOURCE1}
 %{__cargo} rustc %{?_smp_mflags} --release --bin=stratis-base32-decode --no-default-features --features udev_scripts -- -Ctarget-feature=+crt-static
 %{__cargo} build %{?_smp_mflags} --release --bin=stratis-dumpmetadata --no-default-features --features engine,extras,min
 %else
-%cargo_license_summary -f engine,dbus_enabled,min,systemd_compat,extras,udev_scripts
 %{cargo_license -f engine,dbus_enabled,min,systemd_compat,extras,udev_scripts} > LICENSE.dependencies
 %{__cargo} build %{?__cargo_common_opts} --release --bin=stratisd
 %{__cargo} build %{?__cargo_common_opts} --release --bin=stratis-min --bin=stratisd-min --bin=stratis-utils --no-default-features --features engine,min,systemd_compat
@@ -207,6 +339,16 @@ a2x -f manpage docs/stratis-dumpmetadata.txt
 %{_mandir}/man8/stratis-dumpmetadata.8*
 
 %changelog
+* Mon Nov 20 2023 Bryan Gurney <bgurney@redhat.com> - 3.6.2-1
+- Ensure proper alignment of flex devices
+- Resolves: RHEL-16736
+
+* Mon Nov 06 2023 Bryan Gurney <bgurney@redhat.com> - 3.6.1-1
+- Update to version 3.6.1
+- Resolves: RHEL-2278
+- Add filesystem growth limits
+- Resolves: RHEL-12898
+
 * Mon Jul 31 2023 Bryan Gurney <bgurney@redhat.com> - 3.5.8-1
 - Refine handling of partially-set-up pools
 - Resolves: rhbz#2223409
