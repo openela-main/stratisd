@@ -4,7 +4,7 @@
 %global dracutdir %(pkg-config --variable=dracutdir dracut)
 
 Name:           stratisd
-Version:        3.6.7
+Version:        3.7.3
 Release:        1%{?dist}
 Summary:        Daemon that manages block devices to create filesystems
 
@@ -72,7 +72,7 @@ Provides: bundled(crate(cc)) = 1.0.79
 Provides: bundled(crate(cexpr)) = 0.6.0
 Provides: bundled(crate(cfg-if)) = 1.0.0
 Provides: bundled(crate(cfg-if)) = 0.1.10
-Provides: bundled(crate(cfg_aliases)) = 0.1.1
+Provides: bundled(crate(cfg_aliases)) = 0.2.1
 Provides: bundled(crate(chrono)) = 0.4.26
 Provides: bundled(crate(clang-sys)) = 1.6.1
 Provides: bundled(crate(clap)) = 4.3.5
@@ -86,7 +86,7 @@ Provides: bundled(crate(crypto-common)) = 0.1.6
 Provides: bundled(crate(data-encoding)) = 2.4.0
 Provides: bundled(crate(dbus)) = 0.9.7
 Provides: bundled(crate(dbus-tree)) = 0.9.2
-Provides: bundled(crate(devicemapper)) = 0.34.2
+Provides: bundled(crate(devicemapper)) = 0.34.4
 Provides: bundled(crate(devicemapper-sys)) = 0.3.0
 Provides: bundled(crate(difflib)) = 0.4.0
 Provides: bundled(crate(digest)) = 0.10.7
@@ -94,18 +94,18 @@ Provides: bundled(crate(doc-comment)) = 0.3.3
 Provides: bundled(crate(either)) = 1.8.1
 Provides: bundled(crate(env_filter)) = 0.1.0
 Provides: bundled(crate(env_logger)) = 0.11.2
-Provides: bundled(crate(errno)) = 0.3.1
-Provides: bundled(crate(fastrand)) = 1.9.0
+Provides: bundled(crate(errno)) = 0.3.9
+Provides: bundled(crate(fastrand)) = 2.1.1
 Provides: bundled(crate(float-cmp)) = 0.9.0
-Provides: bundled(crate(futures)) = 0.3.28
-Provides: bundled(crate(futures-channel)) = 0.3.28
-Provides: bundled(crate(futures-core)) = 0.3.28
-Provides: bundled(crate(futures-executor)) = 0.3.28
-Provides: bundled(crate(futures-io)) = 0.3.28
-Provides: bundled(crate(futures-macro)) = 0.3.28
-Provides: bundled(crate(futures-sink)) = 0.3.28
-Provides: bundled(crate(futures-task)) = 0.3.28
-Provides: bundled(crate(futures-util)) = 0.3.28
+Provides: bundled(crate(futures)) = 0.3.31
+Provides: bundled(crate(futures-channel)) = 0.3.31
+Provides: bundled(crate(futures-core)) = 0.3.31
+Provides: bundled(crate(futures-executor)) = 0.3.31
+Provides: bundled(crate(futures-io)) = 0.3.31
+Provides: bundled(crate(futures-macro)) = 0.3.31
+Provides: bundled(crate(futures-sink)) = 0.3.31
+Provides: bundled(crate(futures-task)) = 0.3.31
+Provides: bundled(crate(futures-util)) = 0.3.31
 Provides: bundled(crate(generic-array)) = 0.14.7
 Provides: bundled(crate(getrandom)) = 0.2.10
 Provides: bundled(crate(glob)) = 0.3.1
@@ -114,15 +114,16 @@ Provides: bundled(crate(iana-time-zone)) = 0.1.57
 Provides: bundled(crate(io-lifetimes)) = 1.0.11
 Provides: bundled(crate(iocuddle)) = 0.1.1
 Provides: bundled(crate(is-terminal)) = 0.4.7
-Provides: bundled(crate(itertools)) = 0.12.0
+Provides: bundled(crate(itertools)) = 0.13.0
 Provides: bundled(crate(itertools)) = 0.10.5
+Provides: bundled(crate(itertools)) = 0.12.0
 Provides: bundled(crate(itoa)) = 1.0.6
 Provides: bundled(crate(lazy_static)) = 1.4.0
 Provides: bundled(crate(lazycell)) = 1.3.0
 Provides: bundled(crate(libblkid-rs)) = 0.3.2
 Provides: bundled(crate(libblkid-rs-sys)) = 0.3.0
-Provides: bundled(crate(libc)) = 0.2.153
-Provides: bundled(crate(libcryptsetup-rs)) = 0.9.3
+Provides: bundled(crate(libc)) = 0.2.155
+Provides: bundled(crate(libcryptsetup-rs)) = 0.11.0
 Provides: bundled(crate(libcryptsetup-rs-sys)) = 0.4.0
 Provides: bundled(crate(libdbus-sys)) = 0.2.5
 Provides: bundled(crate(libloading)) = 0.7.4
@@ -130,6 +131,7 @@ Provides: bundled(crate(libm)) = 0.2.7
 Provides: bundled(crate(libmount)) = 0.1.15
 Provides: bundled(crate(libudev)) = 0.3.0
 Provides: bundled(crate(libudev-sys)) = 0.1.4
+Provides: bundled(crate(linux-raw-sys)) = 0.4.14
 Provides: bundled(crate(linux-raw-sys)) = 0.3.8
 Provides: bundled(crate(log)) = 0.4.19
 Provides: bundled(crate(loopdev-3)) = 0.5.1
@@ -137,7 +139,7 @@ Provides: bundled(crate(memchr)) = 2.5.0
 Provides: bundled(crate(memoffset)) = 0.9.0
 Provides: bundled(crate(minimal-lexical)) = 0.2.1
 Provides: bundled(crate(mio)) = 0.8.11
-Provides: bundled(crate(nix)) = 0.28.0
+Provides: bundled(crate(nix)) = 0.29.0
 Provides: bundled(crate(nix)) = 0.14.1
 Provides: bundled(crate(nom)) = 7.1.3
 Provides: bundled(crate(normalize-line-endings)) = 0.3.0
@@ -152,10 +154,10 @@ Provides: bundled(crate(predicates)) = 3.0.3
 Provides: bundled(crate(predicates-core)) = 1.0.6
 Provides: bundled(crate(predicates-tree)) = 1.0.9
 Provides: bundled(crate(pretty-hex)) = 0.4.1
-Provides: bundled(crate(proc-macro2)) = 1.0.66
+Provides: bundled(crate(proc-macro2)) = 1.0.87
 Provides: bundled(crate(proptest)) = 1.2.0
 Provides: bundled(crate(quick-error)) = 1.2.3
-Provides: bundled(crate(quote)) = 1.0.28
+Provides: bundled(crate(quote)) = 1.0.37
 Provides: bundled(crate(rand)) = 0.8.5
 Provides: bundled(crate(rand_chacha)) = 0.3.1
 Provides: bundled(crate(rand_core)) = 0.6.4
@@ -166,6 +168,7 @@ Provides: bundled(crate(regex-syntax)) = 0.7.2
 Provides: bundled(crate(regex-syntax)) = 0.6.29
 Provides: bundled(crate(retry)) = 2.0.0
 Provides: bundled(crate(rustc-hash)) = 1.1.0
+Provides: bundled(crate(rustix)) = 0.38.34
 Provides: bundled(crate(rustix)) = 0.37.25
 Provides: bundled(crate(rusty-fork)) = 0.3.0
 Provides: bundled(crate(ryu)) = 1.0.13
@@ -179,9 +182,8 @@ Provides: bundled(crate(signal-hook-registry)) = 1.4.1
 Provides: bundled(crate(slab)) = 0.4.8
 Provides: bundled(crate(socket2)) = 0.4.9
 Provides: bundled(crate(strsim)) = 0.10.0
-Provides: bundled(crate(syn)) = 2.0.29
-Provides: bundled(crate(syn)) = 1.0.109
-Provides: bundled(crate(tempfile)) = 3.6.0
+Provides: bundled(crate(syn)) = 2.0.79
+Provides: bundled(crate(tempfile)) = 3.11.0
 Provides: bundled(crate(termios)) = 0.3.3
 Provides: bundled(crate(termtree)) = 0.4.1
 Provides: bundled(crate(tokio)) = 1.28.2
@@ -304,6 +306,7 @@ a2x -f manpage docs/stratis-dumpmetadata.txt
 %{_unitdir}/stratis-fstab-setup@.service
 %{_bindir}/stratis-min
 %{_libexecdir}/stratisd-min
+%{_bindir}/stratis-decode-dm
 %{_systemd_util_dir}/stratis-fstab-setup
 
 
@@ -325,6 +328,10 @@ a2x -f manpage docs/stratis-dumpmetadata.txt
 %{_mandir}/man8/stratis-dumpmetadata.8*
 
 %changelog
+* Tue Oct 21 2024 Bryan Gurney <bgurney@redhat.com> - 3.7.3-1
+- Update to 3.7.3
+- Resolves: RHEL-59854
+
 * Wed May 01 2024 Bryan Gurney <bgurney@redhat.com> - 3.6.7-1
 - Update to 3.6.7
 - Resolves: RHEL-34250
