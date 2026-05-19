@@ -2,10 +2,11 @@
 
 %global udevdir %(pkg-config --variable=udevdir udev)
 %global dracutdir %(pkg-config --variable=dracutdir dracut)
+%global build_rustflags %{build_rustflags} --cap-lints=warn
 
 Name:           stratisd
-Version:        3.8.1
-Release:        1%{?dist}
+Version:        3.8.6
+Release:        2%{?dist}
 Summary:        Daemon that manages block devices to create filesystems
 
 License:        (MIT OR Apache-2.0) AND Unicode-DFS-2016 AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MIT AND MPL-2.0 AND (Unlicense OR MIT)
@@ -109,7 +110,7 @@ a2x -f manpage docs/stratis-dumpmetadata.txt
 
 %if %{with check}
 %check
-%if 0%{?rhel} && 0%{?rhel} < 10
+%if 0%{?rhel} && 0%{?rhel} < 9
 %cargo_test --no-run
 %else
 %cargo_test -- --no-run
@@ -151,12 +152,12 @@ a2x -f manpage docs/stratis-dumpmetadata.txt
 
 %files dracut
 %license LICENSE
-%{dracutdir}/modules.d/90stratis-clevis/module-setup.sh
-%{dracutdir}/modules.d/90stratis-clevis/stratis-clevis-rootfs-setup
-%{dracutdir}/modules.d/90stratis/61-stratisd.rules
-%{dracutdir}/modules.d/90stratis/module-setup.sh
-%{dracutdir}/modules.d/90stratis/stratis-rootfs-setup
-%{dracutdir}/modules.d/90stratis/stratisd-min.service
+%{dracutdir}/modules.d/50stratis-clevis/module-setup.sh
+%{dracutdir}/modules.d/50stratis-clevis/stratis-clevis-rootfs-setup
+%{dracutdir}/modules.d/50stratis/61-stratisd.rules
+%{dracutdir}/modules.d/50stratis/module-setup.sh
+%{dracutdir}/modules.d/50stratis/stratis-rootfs-setup
+%{dracutdir}/modules.d/50stratis/stratisd-min.service
 %{_systemd_util_dir}/system-generators/stratis-clevis-setup-generator
 %{_systemd_util_dir}/system-generators/stratis-setup-generator
 
@@ -167,6 +168,18 @@ a2x -f manpage docs/stratis-dumpmetadata.txt
 %{_mandir}/man8/stratis-dumpmetadata.8*
 
 %changelog
+* Tue Nov 11 2025 Chung Chung <cchung@redhat.com> - 3.8.6-2
+- Update to 3.8.6
+- Resolves: RHEL-125937
+
+* Mon Oct 27 2025 Chung Chung <cchung@redhat.com> - 3.8.1-3
+- Update unit.fmf ref to v3.8.1
+- Resolves: RHEL-121567
+
+* Wed Oct 22 2025 Chung Chung <cchung@redhat.com> - 3.8.1-2
+- Fix problem with FTBFS
+- Resolves: RHEL-121567
+
 * Tue May 13 2025 Chung Chung <cchung@redhat.com> - 3.8.1-1
 - Update to 3.8.1
   Resolves: RHEL-71909
