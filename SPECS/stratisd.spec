@@ -2,10 +2,11 @@
 
 %global udevdir %(pkg-config --variable=udevdir udev)
 %global dracutdir %(pkg-config --variable=dracutdir dracut)
+%global build_rustflags %{build_rustflags} --cap-lints=warn
 
 Name:           stratisd
 Version:        3.7.3
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Daemon that manages block devices to create filesystems
 
 License:        MPL-2.0
@@ -231,9 +232,9 @@ Requires:     stratisd
 %prep
 %autosetup -n stratisd-stratisd-v%{version} %{?rhel:-a1}
 
-%if 0%{?rhel} >= 10
+%if 0%{?rhel} >= 9
 %cargo_prep -v vendor
-%elif 0%{?rhel} && 0%{?rhel} < 10
+%elif 0%{?rhel}
 %cargo_prep -V 1
 %else
 %cargo_prep
@@ -267,7 +268,7 @@ a2x -f manpage docs/stratis-dumpmetadata.txt
 
 %if %{with check}
 %check
-%if 0%{?rhel} && 0%{?rhel} < 10
+%if 0%{?rhel} && 0%{?rhel} < 9
 %cargo_test --no-run
 %else
 %cargo_test -- --no-run
@@ -328,7 +329,15 @@ a2x -f manpage docs/stratis-dumpmetadata.txt
 %{_mandir}/man8/stratis-dumpmetadata.8*
 
 %changelog
-* Tue Oct 21 2024 Bryan Gurney <bgurney@redhat.com> - 3.7.3-1
+* Fri Oct 10 2025 Chung Chung <cchung@redhat.com> - 3.7.3-3
+- Fix problem with FTBFS
+- Resolves: RHEL-120658
+
+* Tue Sep 23 2025 Chung Chung <cchung@redhat.com> - 3.7.3-2
+- Update to 3.7.3-2
+- Resolves: RHEL-115006
+
+* Mon Oct 21 2024 Bryan Gurney <bgurney@redhat.com> - 3.7.3-1
 - Update to 3.7.3
 - Resolves: RHEL-59854
 
