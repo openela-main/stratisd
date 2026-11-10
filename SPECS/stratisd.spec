@@ -5,8 +5,8 @@
 %global build_rustflags %{build_rustflags} --cap-lints=warn
 
 Name:           stratisd
-Version:        3.8.6
-Release:        2%{?dist}
+Version:        3.9.1
+Release:        1%{?dist}
 Summary:        Daemon that manages block devices to create filesystems
 
 License:        (MIT OR Apache-2.0) AND Unicode-DFS-2016 AND Apache-2.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MIT AND MPL-2.0 AND (Unlicense OR MIT)
@@ -15,7 +15,6 @@ Source0:        %{url}/archive/stratisd-v%{version}/%{name}-%{version}.tar.gz
 Source1:        %{url}/releases/download/stratisd-v%{version}/%{name}-%{version}-vendor.tar.gz
 
 
-ExclusiveArch:  %{rust_arches}
 %if 0%{?rhel}
 ExcludeArch:    i686
 %endif
@@ -27,7 +26,6 @@ BuildRequires:  rust-packaging
 %endif
 BuildRequires:  rust-srpm-macros
 BuildRequires:  systemd-devel
-BuildRequires:  dbus-devel
 BuildRequires:  libblkid-devel
 BuildRequires:  cryptsetup-devel
 BuildRequires:  clang
@@ -45,6 +43,7 @@ Requires:       systemd-libs
 Requires:       dbus-libs
 Requires:       cryptsetup-libs
 Requires:       libblkid
+Requires:       cryptsetup
 
 # stratisd does not require clevis; it can be used in restricted environments
 # where clevis is not available.
@@ -58,7 +57,6 @@ Recommends:     clevis-luks >= 18
 %package dracut
 Summary: Dracut modules for use with stratisd
 
-ExclusiveArch:  %{rust_arches}
 %if 0%{?rhel}
 ExcludeArch:    i686
 %endif
@@ -73,7 +71,6 @@ Requires:     systemd
 %package tools
 Summary: Tools that support Stratis operation
 
-ExclusiveArch:  %{rust_arches}
 %if 0%{?rhel}
 ExcludeArch:    i686
 %endif
@@ -97,7 +94,8 @@ Requires:     stratisd
 %build
 %{cargo_license -f engine,dbus_enabled,min,systemd_compat,extras,udev_scripts} > LICENSE.dependencies
 %{__cargo} build %{?__cargo_common_opts} --release --bin=stratisd
-%{__cargo} build %{?__cargo_common_opts} --release --bin=stratis-min --bin=stratisd-min --bin=stratis-utils --no-default-features --features engine,min,systemd_compat
+%{__cargo} build %{?__cargo_common_opts} --release --bin=stratis-min --bin=stratisd-min --no-default-features --features engine,min,systemd_compat
+%{__cargo} build %{?__cargo_common_opts} --release --bin=stratis-utils --no-default-features --features dbus_enabled,engine,min,systemd_compat
 %{__cargo} rustc %{?__cargo_common_opts} --release --bin=stratis-str-cmp --no-default-features --features udev_scripts -- -Ctarget-feature=+crt-static
 %{__cargo} rustc %{?__cargo_common_opts} --release --bin=stratis-base32-decode --no-default-features --features udev_scripts -- -Ctarget-feature=+crt-static
 %{__cargo} build %{?__cargo_common_opts} --release --bin=stratisd-tools --no-default-features --features engine,extras
@@ -110,11 +108,7 @@ a2x -f manpage docs/stratis-dumpmetadata.txt
 
 %if %{with check}
 %check
-%if 0%{?rhel} && 0%{?rhel} < 9
-%cargo_test --no-run
-%else
 %cargo_test -- --no-run
-%endif
 %endif
 
 %post
@@ -168,6 +162,18 @@ a2x -f manpage docs/stratis-dumpmetadata.txt
 %{_mandir}/man8/stratis-dumpmetadata.8*
 
 %changelog
+* Sun Jun 28 2026 Chung Chung <cchung@redhat.com> - 3.9.1-1
+- Update to 3.9.1
+- Resolves: RHEL-176335
+
+* Wed May 27 2026 Chung Chung <cchung@redhat.com> - 3.9.0-2
+- Adjust build steps
+- Resolves: RHEL-172451
+
+* Tue May 05 2026 Chung Chung <cchung@redhat.com> - 3.9.0-1
+- Update to 3.9.0
+- Resolves: RHEL-172451
+
 * Tue Nov 11 2025 Chung Chung <cchung@redhat.com> - 3.8.6-2
 - Update to 3.8.6
 - Resolves: RHEL-125937
